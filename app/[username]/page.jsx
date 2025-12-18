@@ -1,6 +1,122 @@
-async function Page({ params }) {
+import { v4 as uuidv4 } from 'uuid';
+const thankYouMessages = [
+    "Your creativity is truly inspiring! I'm happy to contribute.",
+    "I appreciate how much effort you put into your work! Keep it up!",
+    "Your content has transformed my day. Here’s to more amazing creations!",
+    "Thank you for sharing your talents with us! Excited to support you!",
+    "Every little bit helps! Can't wait for your next project!",
+    "You bring so much joy through your art. Proud to support you!",
+    "Your passion is contagious! Here's a small gesture to keep you going!",
+    "You make a real difference with your work! Thank you for everything!",
+    "I look forward to your content every day! Happy to help!",
+    "Your creativity lights up my feed! Glad to give back!",
+    "Supporting you is a pleasure! Your work resonates with so many of us!",
+    "Your talent deserves all the recognition! Here’s to your success!",
+    "Each piece you create is a masterpiece! Keep shining!",
+    "Your hard work doesn't go unnoticed! I'm thrilled to support you!",
+    "Thanks for being such a positive influence! Happy to contribute!",
+    "Your content always brightens my outlook! Here's my support!",
+    "Can't wait to see how you use this donation! Your potential is limitless!",
+    "Thank you for being authentic and real in your content!",
+    "Your works inspire action and creativity in others! Let's support that!",
+    "I'm here cheering you on! Your journey is just getting started!"
+]
+const names = [
+    "Aarav", "Vivaan", "Aditya", "Kabir", "Krishna",
+    "Siddharth", "Anaya", "Isha", "Rohan", "Saanvi",
+    "Arjun", "Diya", "Dev", "Meera", "Nisha",
+    "Rahul", "Aditi", "Pooja", "Tanvi", "Vani"
+]
 
+async function Page({ params }) {
     const { username } = await params
-    return <p>ID: {username}</p>
+    var Supporters = [];
+    for (let i = 0; i < 18; i++) {
+        Supporters = [...Supporters, { Name: names[Math.floor(Math.random() * 20)], Amount: (Math.random() * 99 + 1).toFixed(2), Message: thankYouMessages[Math.floor(Math.random() * 20)], uuid: uuidv4() }];
+    }
+
+
+    return <>
+        <div className="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+        <div className="">
+            <main className="">
+
+                <div className="relative">
+                    <div className="BANNER bg-[url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F4d%2F16%2F78%2F4d1678e171347c4402c231dad0394f0f.gif&f=1&nofb=1&ipt=b0f42a0580ab2be444b87e16b62765f0b81ffe102a000549fc1ce08a019c4e5c)] bg-contain w-full border-2 border-t-0 rounded-b-xl border-b-0 border-amber-300 h-[22vh]">
+                    </div>
+                    <div className="absolute top-[10vh] right-[45%]  rounded-full">
+                        <img className="w-50 border-amber-300 border-t-0 border-[3px] rounded-full" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fipeeworld.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffunny-cat.jpeg&f=1&nofb=1&ipt=be8b5d22c49c0fc0a77fabf3163a635aa867d64283efd38d98124e54c05b8a1e" alt="ICON" />
+                        <div className="text-center text-4xl relative pb-6 font-bold flex flex-col justify-center items-center">
+                            <div className="capitalize">{username}</div>
+                            <div className="text-sm absolute bottom-0 text-nowrap font-semibold text-gray-400 text-center hover:text-gray-200">
+                                Creates explanation video on physsics and math
+                            </div>
+                            <div className="text-sm font-semibold absolute bottom-[-2.5vh] hover:text-slate-200 text-slate-400 text-nowrap">
+                                9201 posts • 22 donors • $823.28/month
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-[20vh] grid grid-cols-2 grid-rows-1">
+                        <div className=" SUPPORTERS">
+                            <div className="ml-6 text-2xl m-2 font-mono font-bold">
+                                Recent supports
+                            </div>
+                            <div className="TABLEOFSUPRT ">
+
+                                <div className="mx-5 my-2 mb-4 bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl rounded-2xl border border-amber-300/20">
+                                    <table className="w-full text-sm text-left text-gray-200">
+                                        <thead className="text-sm bg-gradient-to-r from-amber-500/20 to-orange-500/20 border-b border-amber-300/30">
+                                            <tr>
+                                                <th scope="col" className="px-8 py-4 font-semibold text-amber-300">
+                                                    Supporter Name
+                                                </th>
+                                                <th scope="col" className="px-8 py-4 font-semibold text-amber-300">
+                                                    Amount Donated
+                                                </th>
+                                                <th scope="col" className="px-8 py-4 font-semibold text-amber-300">
+                                                    Message
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <div className="overflow-y-auto max-h-80">
+                                        <table className="w-full text-sm text-left text-gray-200">
+                                            <tbody>
+                                                {Supporters.map((e) => {
+                                                    return (
+                                                        <tr key={e.uuid} className="bg-slate-800/50 border-b border-slate-600/30 hover:bg-slate-700/50 transition-colors duration-200">
+                                                            <th scope="row" className="px-8 py-5 font-medium text-white whitespace-nowrap">
+                                                                {e.Name}
+                                                            </th>
+                                                            <td className="px-8 py-5 text-green-400 font-semibold">
+                                                                ${e.Amount}
+                                                            </td>
+                                                            <td className="px-8 py-5 text-green-400 font-semibold">
+                                                                {e.Message}
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div className="bg-sky-500 PAYMENTS">
+                            Support now
+                        </div>
+
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+
+    </>
 }
 export default Page

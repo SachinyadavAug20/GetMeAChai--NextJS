@@ -31,23 +31,75 @@ const Navbar = () => {
                         <span className="text-lg text-white font-semibold capitalize">{session.user.email.split('@')[0].split("").filter(char => isNaN(char)).join('')}</span>
                     </Link>     <svg className="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7" /></svg>
                 </button>
-                <div id="dropdown" onMouseLeave={() => { setShowdropdown(false) }} className={`z-10 ${showdropdown ? "" : "hidden"} transition-all duration-200 bg-neutral-primary-medium border border-default-medium absolute rounded-base shadow-lg w-44`}>
-                    <ul className="p-2 text-sm text-body font-medium">
+                <div
+                    id="dropdown"
+                    onMouseLeave={() => setShowdropdown(false)}
+                    className={`z-10 absolute top-1 bg-gray-800 w-1/7 rounded-base shadow-lg
+    border border-default-medium
+    transform transition-all duration-200 ease-out
+    ${showdropdown
+                            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}
+  `}
+                >
+                    <ul className="p-2 text-sm text-body flex flex-col justify-center  font-medium space-y-1">
                         <li>
-                            <a href="#" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</a>
+                            <Link
+                                href="/dashboard"
+                                className="inline-flex items-center w-full p-2 rounded
+          transition-all duration-150 ease-out
+          hover:bg-neutral-tertiary-strong hover:text-heading
+          hover:font-semibold
+                                hover:bg-gray-600
+          hover:translate-x-1 hover:scale-[1.02]"
+                            >
+                                Dashboard
+                            </Link>
                         </li>
+
                         <li>
-                            <a href="#" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Settings</a>
+                            <Link
+                                href={`./${session.user.email.split('@')[0].split("").filter(char => isNaN(char)).join('')}`}
+                                className="inline-flex items-center w-full p-2 rounded
+          transition-all duration-150 ease-out
+          hover:bg-neutral-tertiary-strong hover:text-heading
+          hover:font-semibold
+                                hover:bg-gray-600
+          hover:translate-x-1 hover:scale-[1.02]"
+                            >
+                                Your page
+                            </Link>
                         </li>
+
+          {/*               <li> */}
+          {/*                   <div */}
+          {/*                       className="inline-flex items-center w-full p-2 rounded */}
+          {/* transition-all duration-150 ease-out */}
+          {/* hover:bg-neutral-tertiary-strong hover:text-heading */}
+          {/* hover:font-semibold */}
+          {/*                       hover:bg-gray-600 */}
+          {/* hover:translate-x-1 hover:scale-[1.02]" */}
+          {/*                   > */}
+          {/*                       Earnings */}
+          {/*                   </div> */}
+          {/*               </li> */}
+
                         <li>
-                            <a href="#" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Earnings</a>
-                        </li>
-                        <li>
-                            <a href="#" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Sign out</a>
+                            <Link
+                                href={"/"}
+                                onClick={()=>{signOut()}}
+                                className="inline-flex items-center w-full p-2 rounded
+          transition-all duration-150 ease-out
+                                hover:bg-red-600
+          hover:bg-neutral-tertiary-strong hover:text-heading
+          hover:font-semibold
+          hover:translate-x-1 hover:scale-[1.02]"
+                            >
+                                Sign out
+                            </Link>
                         </li>
                     </ul>
                 </div>
-
                 <button onClick={() => signOut()} className="text-white font-semibold hover:font-bold bg-red-500 hover:bg-red-600 focus:ring-4 border-red-600 rounded-xl border hover:border-2 transition-all duration-300 m-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 text-sm px-4 py-2.5 text-center leading-5">Sign out</button>
             </div> :
                 <div>

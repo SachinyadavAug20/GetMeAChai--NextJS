@@ -1,5 +1,6 @@
 "use client"
 import { useSession, signIn, signOut } from "next-auth/react"
+import Link from "next/link"
 
 const page = () => {
     const { data: session } = useSession()
@@ -15,6 +16,13 @@ const page = () => {
                             <p className="font-semibold text-xl">{session.user.name || session.user.email}</p>
                             <p className="text-sm opacity-80">{session.user.email}</p>
                         </div>
+                        <Link href="/">
+                            <button
+                                className="w-full flex items-center justify-center rounded-2xl shadow-lg px-8 py-4 text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 bg-blue-600 hover:bg-blue-700 border-2 border-blue-700 text-white group mb-4"
+                            >
+                                <span>Continue to Home</span>
+                            </button>
+                        </Link>
                         <button
                             onClick={() => signOut()}
                             className="w-full flex items-center justify-center rounded-2xl shadow-lg px-8 py-4 text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 bg-red-600 hover:bg-red-700 border-2 border-red-700 text-white group"
