@@ -1,3 +1,4 @@
+import PaymentCard from '@/components/PaymentCard';
 import { v4 as uuidv4 } from 'uuid';
 const thankYouMessages = [
     "Your creativity is truly inspiring! I'm happy to contribute.",
@@ -58,58 +59,33 @@ async function Page({ params }) {
                     </div>
                     <div className="mt-[20vh] grid grid-cols-2 grid-rows-1">
                         <div className=" SUPPORTERS">
-                            <div className="ml-6 text-2xl m-2 font-mono font-bold">
-                                Recent supports
-                            </div>
-                            <div className="TABLEOFSUPRT ">
 
-                                <div className="mx-5 my-2 mb-4 bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl rounded-2xl border border-amber-300/20">
-                                    <table className="w-full text-sm text-left text-gray-200">
-                                        <thead className="text-sm bg-gradient-to-r from-amber-500/20 to-orange-500/20 border-b border-amber-300/30">
-                                            <tr>
-                                                <th scope="col" className="px-8 py-4 font-semibold text-amber-300">
-                                                    Supporter Name
-                                                </th>
-                                                <th scope="col" className="px-8 py-4 font-semibold text-amber-300">
-                                                    Amount Donated
-                                                </th>
-                                                <th scope="col" className="px-8 py-4 font-semibold text-amber-300">
-                                                    Message
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                    </table>
+                            <div className="TABLEOFSUPRT ">
+                                <div className="ml-6 text-2xl m-2 font-mono font-bold">
+                                    Recent supports
+                                </div>
+                                <div className="mx-5 my-2 hover:border-2 border-amber-300 mb-4 bg-linear-to-br from-slate-800 to-slate-900 shadow-2xl rounded-xl border-0 ">
+
                                     <div className="overflow-y-auto max-h-80">
-                                        <table className="w-full text-sm text-left text-gray-200">
-                                            <tbody>
-                                                {Supporters.map((e) => {
-                                                    return (
-                                                        <tr key={e.uuid} className="bg-slate-800/50 border-b border-slate-600/30 hover:bg-slate-700/50 transition-colors duration-200">
-                                                            <th scope="row" className="px-8 py-5 font-medium text-white whitespace-nowrap">
-                                                                {e.Name}
-                                                            </th>
-                                                            <td className="px-8 py-5 text-green-400 font-semibold">
-                                                                ${e.Amount}
-                                                            </td>
-                                                            <td className="px-8 py-5 text-green-400 font-semibold">
-                                                                {e.Message}
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
-                                                }
-                                            </tbody>
-                                        </table>
+                                        <div className="space-y-4 p-4">
+                                            {Supporters.map((e) => {
+                                                return (
+                                                    <div key={e.uuid} className="bg-slate-800/50 p-4 rounded-lg border border-slate-600/30 hover:bg-slate-700/50 transition-colors duration-200">
+                                                        <div className="font-medium text-white text-lg">{e.Name}</div>
+                                                        <div className="text-green-400 font-semibold mt-2">${e.Amount}</div>
+                                                        <div className="text-gray-300 mt-1">{e.Message}</div>
+                                                    </div>
+                                                )
+                                            })
+                                            }
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
 
                         </div>
-                        <div className="bg-sky-500 PAYMENTS">
-                            Support now
-                        </div>
-
+                        <PaymentCard username={username} />
                     </div>
 
                 </div>
