@@ -1,8 +1,7 @@
 "use client"
-
 import { useState } from "react"
 
-const PaymentCard = ({ username }) => {
+const PaymentCard = ({ username, pay }) => {
     const [amount, setAmount] = useState(0)
 
     return (
@@ -14,16 +13,16 @@ const PaymentCard = ({ username }) => {
             <div className="flex flex-col gap-4">
                 <div className="grid grid-cols-2 gap-2">
                     <button onClick={() => { setAmount(5) }} className="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
-                        <span className="mr-2">🫖</span> <span className="text-green-400">$5</span> - Cutting Chai
+                        <span className="mr-2">🫖</span> <span className="text-green-400">₹5</span> - Cutting Chai
                     </button>
                     <button onClick={() => { setAmount(10) }} className="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
-                        <span className="mr-2">🥛</span> <span className="text-green-400">$10</span> - Doodh Chai
+                        <span className="mr-2">🥛</span> <span className="text-green-400">₹10</span> - Doodh Chai
                     </button>
                     <button onClick={() => { setAmount(25) }} className="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
-                        <span className="mr-2">🌿</span> <span className="text-green-400">$25</span> - Masala Chai
+                        <span className="mr-2">🌿</span> <span className="text-green-400">₹25</span> - Masala Chai
                     </button>
                     <button onClick={() => { setAmount(50) }} className="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
-                        <span className="mr-2">🔥</span> <span className="text-green-400">$50</span> - Kadak Masala Chai
+                        <span className="mr-2">🔥</span> <span className="text-green-400">₹50</span> - Kadak Masala Chai
                     </button>
                 </div>
                 <div className="pt-3 justify-center items-center flex">
@@ -41,7 +40,7 @@ const PaymentCard = ({ username }) => {
                     </div>
                 </div>
 
-                <button className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors">
+                <button onClick={(e) => { pay(e.target.value) }} className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors">
                     Donate Now
                 </button>
             </div>
