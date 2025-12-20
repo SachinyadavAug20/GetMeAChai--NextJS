@@ -1,5 +1,4 @@
 import './my.css'
-
 export default function Home() {
     return (
         <div className="">
@@ -59,9 +58,9 @@ export default function Home() {
                 </div>
 
                 <div className="bg-white my-1 opacity-10 h-0.5 mb-5"></div>
-
-
             </div>
         </div>
     );
 }
+
+

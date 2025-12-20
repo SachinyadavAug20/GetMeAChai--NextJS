@@ -5,4 +5,14 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* Text selection styling */
+::selection {
+    background-color: #fbbf24; /* Yellow background */
+    color: #000000; /* Black text */
+}
+
+::-moz-selection {
+    background-color: #fbbf24;
+    color: #000000;
+}
 

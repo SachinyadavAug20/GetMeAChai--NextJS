@@ -4,47 +4,28 @@ import { useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
 
 const Page = () => {
-    const {data:session} =useSession()
+    const { data: session } = useSession()
     const router = useRouter()
-    const [profile, setProfile] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const savedProfile = localStorage.getItem('userProfile')
-            return savedProfile ? JSON.parse(savedProfile) : {
-                name: '',
-                bio: '',
-                profilePic: '',
-                banner: '',
-                razorpayId: '',
-                razorpaySecret: ''
-            }
-        }
-        return {
-            name: '',
-            bio: '',
-            profilePic: '',
-            banner: '',
-            razorpayId: '',
-            razorpaySecret: ''
-        }
+    const [profile, setProfile] = useState({
+        Name: "",
+        Bio: "",
+        ProfilePicURL: "",
+        BannerURL: "",
+        RazerpayID: "",
+        RazorpaySecret: ""
     })
-
     useEffect(() => {
-        if(!session){
+        if (!session) {
             router.push("./login")
         }
     }, [session, router])
 
     const handleChange = (e) => {
-        setProfile({
-            ...profile,
-            [e.target.name]: e.target.value
-        })
+        setProfile({ ...profile, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        localStorage.setItem('userProfile', JSON.stringify(profile))
-        alert('Profile updated!')
+
     }
     return (
         <>
@@ -57,7 +38,7 @@ const Page = () => {
                         <input
                             type="text"
                             name="name"
-                            value={profile.name}
+                            value={profile.Name}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
@@ -66,7 +47,7 @@ const Page = () => {
                         <label className="block text-sm font-medium text-gray-300">Bio</label>
                         <textarea
                             name="bio"
-                            value={profile.bio}
+                            value={profile.Bio}
                             onChange={handleChange}
                             rows="3"
                             className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -77,7 +58,7 @@ const Page = () => {
                         <input
                             type="url"
                             name="profilePic"
-                            value={profile.profilePic}
+                            value={profile.ProfilePicURL}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
@@ -87,7 +68,7 @@ const Page = () => {
                         <input
                             type="url"
                             name="banner"
-                            value={profile.banner}
+                            value={profile.BannerURL}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
@@ -97,7 +78,7 @@ const Page = () => {
                         <input
                             type="text"
                             name="razorpayId"
-                            value={profile.razorpayId}
+                            value={profile.RazerpayID}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
@@ -107,12 +88,13 @@ const Page = () => {
                         <input
                             type="password"
                             name="razorpaySecret"
-                            value={profile.razorpaySecret}
+                            value={profile.RazorpaySecret}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
                     <button
+
                         type="submit"
                         className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
